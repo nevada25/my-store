@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Product} from "./models/product.model";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,6 @@ import {Product} from "./models/product.model";
 })
 export class AppComponent {
   title = 'my-store';
-  imgParent: string = ''
   showImage = true;
 
   onLoaded(url: string) {

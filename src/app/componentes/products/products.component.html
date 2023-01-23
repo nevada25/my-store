@@ -1,9 +1,27 @@
-<p>
-  La cantidad: {{myShoppingCart.length}} 
-</p><p>
-  La total: {{total}}
-</p>
+<button (click)="createNewProduct()">Create</button>
+<button (click)="onShowDetail('10000')">Detalle not fount</button>
 <div class="products--grid">
-  <app-product *ngFor="let product of products" [product]="product"
-               (addedProduct)="onAddToShoppingCart($event)"></app-product>
+  <app-product
+    *ngFor="let product of products"
+    [product]="product"
+    (addedProduct)="onAddToShoppingCart($event)"
+    (showProduct)="onShowDetail($event)"
+  ></app-product>
+  <button (click)="loadMore()">Load More</button>
+</div>
+<div class="product-detail" [class.active]="showProductDetails">
+  <div *ngIf="productChosen">
+    <button (click)="toggleProductDetail()">Close</button>
+    <h1>{{ productChosen.title }}</h1>
+    <p>{{ productChosen.description }}</p>
+    <swiper
+      [slidesPerView]="1"
+    >
+      <ng-template swiperSlide *ngFor="let images of productChosen.images"><img [src]="images"></ng-template>
+    </swiper>
+    <p>{{productChosen.description}}</p>
+
+    <button (click)="updateProduct()">Update</button>
+    <button (click)="onDeletedProduct()">delete</button>
+  </div>
 </div>
